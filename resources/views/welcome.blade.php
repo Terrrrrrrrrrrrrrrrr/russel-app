@@ -1,3 +1,3 @@
 <html>
-    <header>Welcome to Russel-app </header>
+    <h1>Welcome to Russel-app </h1>
 </html>
