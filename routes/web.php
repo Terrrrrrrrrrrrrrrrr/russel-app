@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Services\UserService;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Response;
+use App\Services\TaskService;
+use App\Services\ProductService;
+use App\Http\Controllers\ProductController; 
+
 
 //Parameter
 Route::get('/post/{post}/comment/{comment}', function (string $postId, string $comment) { 
@@ -51,7 +55,17 @@ route::post('/token', function (Request $request){
     return $request->all();
 });
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Controller -> Middleware
+Route::get('/users', [UserController::class, 'index'])->middleware('user-middleware');
+
+//Resource
+Route::resource('products', ProductController::class);
+
+//View with data
+Route::get('/product-list', function (ProductService $productService) {
+        $data['products'] = $productService->listProducts();
+        return view('products.list', $data);
+});
 
 Route::get('/', function () {
     return view('welcome');
