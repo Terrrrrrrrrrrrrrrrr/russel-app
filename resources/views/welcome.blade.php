@@ -1,3 +1,5 @@
-<html>
-    <h1>Welcome to Russel-app </h1>
-</html>
+<x-layout>
+    <x-slot:heading>
+        <h1>Welcome to {{ $name }} </h1>
+    </x-slot>
+</x-layout>

@@ -55,11 +55,11 @@ route::post('/token', function (Request $request){
     return $request->all();
 });
 
-// Controller -> Middleware
-Route::get('/users', [UserController::class, 'index'])->middleware('user-middleware');
+// // Controller -> Middleware
+// Route::get('/users', [UserController::class, 'index'])->middleware('user-middleware');
 
-//Resource
-Route::resource('products', ProductController::class);
+// //Resource
+// Route::resource('products', ProductController::class);
 
 //View with data
 Route::get('/product-list', function (ProductService $productService) {
@@ -90,4 +90,9 @@ Route::get('/koko', function (UserService $userService) {
     return Response::json($userService->listUsers());
 });
 
+Route::get('/', function (){
+    return view('welcome', ['name' => 'russel-app']);
+});
 
+Route::get('/users', [UserController::class, 'index']);
+Route::resource('products', ProductController::class);
